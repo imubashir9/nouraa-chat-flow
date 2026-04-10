@@ -1,0 +1,493 @@
+{
+  "voiceConfig": {
+    "sttProvider": "elevenlabs",
+    "ttsProvider": "elevenlabs",
+    "enableSpeculativeExecution": true,
+    "removePunctuation": true,
+    "vadSilenceThreshold": 1,
+    "languageMode": "auto",
+    "preferredLanguage": "en",
+    "elevenLabsVoiceId": "[REDACTED_VOICE_ID]",
+    "openaiVoice": "nova",
+    "stability": 0.5,
+    "similarityBoost": 0.75,
+    "enableInterruption": true,
+    "maxCallDurationSeconds": 600,
+    "userSilenceTimeoutSeconds": 20,
+    "silenceMaxRetries": 3
+  },
+  "llmConfig": {
+    "provider": "openai",
+    "model": "gpt-4o",
+    "temperature": 0.7
+  },
+  "name": "City General Hospital Agent",
+  "description": "Flow schema saved from Flow Builder",
+  "agentMode": "flow",
+  "schema": {
+    "meta": {
+      "direction": "TB"
+    },
+    "nodes": {
+      "start-1": {
+        "type": "start",
+        "position": {
+          "x": 174.1047392357261,
+          "y": 15.492500637269018
+        }
+      },
+      "extractVariable-1775201028712": {
+        "type": "extractVariable",
+        "variables": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "email",
+            "type": "text"
+          },
+          {
+            "name": "date",
+            "type": "text"
+          },
+          {
+            "name": "phone",
+            "type": "text"
+          },
+          {
+            "name": "reason",
+            "type": "text"
+          },
+          {
+            "name": "isNewPatient",
+            "type": "text"
+          },
+          {
+            "name": "insurance",
+            "type": "text"
+          }
+        ],
+        "ambientSoundEnabled": false,
+        "ambientSound": "none",
+        "ambientSoundVolume": 0.4,
+        "position": {
+          "x": -127.29544488759299,
+          "y": 924.5363846644832
+        }
+      },
+      "conversation-1": {
+        "type": "conversation",
+        "message": "Welcome to City General Hospital. I'm Sarah, \nyour AI assistant. I can help you schedule \nan appointment, answer questions about our \nservices, or connect you with our team. \nHow can I help you today?",
+        "transitions": [
+          {
+            "id": "transition-1775200779202",
+            "condition": "condition-1",
+            "prompt": "User wants Information"
+          },
+          {
+            "id": "transition-1775200826938",
+            "condition": "condition-2",
+            "prompt": "User wants To Book Appointment"
+          },
+          {
+            "id": "transition-1775200884979",
+            "condition": "condition-3",
+            "prompt": "User Wants to Cancel the Call"
+          }
+        ],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -322.1855178800987,
+          "y": 236.31883553124447
+        },
+        "isGlobal": false
+      },
+      "conversation-1775200774297": {
+        "type": "conversation",
+        "message": "Of course! I'm happy to help. You can ask me \nabout our services, office hours, insurance \nplans, or anything else about City General Hospital.",
+        "transitions": [],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -862.1484586439021,
+          "y": 538.2025717341513
+        },
+        "isGlobal": true,
+        "globalCondition": "If any other information other than booking is asked by the user refer to the knowledge base and answer accordingly"
+      },
+      "conversation-1775201346582": {
+        "type": "conversation",
+        "message": "I'd be happy to book that for you! Could you \nplease share your full name, email address, \nand your preferred date and time for the appointment?",
+        "transitions": [
+          {
+            "id": "transition-1775470216902",
+            "condition": "condition-1",
+            "prompt": "All User Information Collected, proceed to booking"
+          }
+        ],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": 263.3688982654194,
+          "y": 602.4187610062294
+        },
+        "isGlobal": false
+      },
+      "conversation-1775201898981": {
+        "type": "conversation",
+        "message": "You're all set, {{name}}! Your appointment is \nconfirmed for {{date}}. You'll receive a \nconfirmation message shortly. Is there anything \nelse I can help you with today?",
+        "transitions": [
+          {
+            "id": "transition-1775207948502",
+            "condition": "condition-1",
+            "prompt": "No"
+          },
+          {
+            "id": "transition-1775207958902",
+            "condition": "condition-2",
+            "prompt": "Yes"
+          }
+        ],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -793.8907051756538,
+          "y": 2080.851477264995
+        },
+        "isGlobal": false
+      },
+      "conversation-1775208108947": {
+        "type": "conversation",
+        "message": "Thank You for contacting.",
+        "transitions": [
+          {
+            "id": "transition-1775208146518",
+            "condition": "skip-response",
+            "prompt": ""
+          }
+        ],
+        "isStart": false,
+        "skipResponse": true,
+        "position": {
+          "x": 179.86414463225407,
+          "y": 1687.2308700933631
+        },
+        "isGlobal": false
+      },
+      "conversation-1775210735008": {
+        "type": "conversation",
+        "message": "Ok Im forwarding your call to hospital number. A human operator will connect shortly.",
+        "transitions": [
+          {
+            "id": "transition-1775211037611",
+            "condition": "condition-1",
+            "prompt": "call"
+          }
+        ],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -1275.7131969013362,
+          "y": 530.9630786260656
+        },
+        "isGlobal": true,
+        "globalCondition": "If user ever asks to contact real human or contact emergency hospital number"
+      },
+      "conversation-1775470677867": {
+        "type": "conversation",
+        "message": "Perfect, {{name}}! Let me confirm your appointment \ndetails — Date: {{date}}, Contact: {{email}}. \nPlease check all the details above and allow me to proceed.",
+        "transitions": [
+          {
+            "id": "transition-1775470717599",
+            "condition": "condition-1",
+            "prompt": "ask user for confirmation"
+          }
+        ],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -417.23680339214303,
+          "y": 1453.1512728731418
+        },
+        "isGlobal": false
+      },
+      "conversation-1775836933477": {
+        "type": "conversation",
+        "message": "I can certainly help you get scheduled. Are you a new patient, or have you visited City General Hospital before?",
+        "transitions": [
+          {
+            "id": "transition-1775838870762",
+            "condition": "condition-1",
+            "prompt": "User says they are a New Patient"
+          },
+          {
+            "id": "transition-1775839951388",
+            "condition": "condition-2",
+            "prompt": "User says they are a Returning Patient"
+          }
+        ],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -731.7257866146947,
+          "y": 898.4975158012467
+        },
+        "isGlobal": false
+      },
+      "conversation-1775838331719": {
+        "type": "conversation",
+        "message": "Since you are a new patient, we will need to collect a little extra information, such as your email and phone number, so we can send you our intake forms. What date and time were you looking to come in?",
+        "transitions": [
+          {
+            "id": "transition-1775838522706",
+            "condition": "condition-1",
+            "prompt": "All User Information Collected, proceed to booking"
+          }
+        ],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -1232.004146386007,
+          "y": 1683.7632123097785
+        },
+        "isGlobal": false
+      },
+      "conversation-1775838725037": {
+        "type": "conversation",
+        "message": "I'm sorry, I didn't quite catch that. Just so I can pull up the correct forms, are you a completely new patient, or have you visited City General Hospital before?",
+        "transitions": [
+          {
+            "id": "transition-1775838737434",
+            "condition": "condition-1",
+            "prompt": "If the user provides an answer"
+          }
+        ],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -824.5373359305717,
+          "y": 1685.8277669514541
+        },
+        "isGlobal": false
+      },
+      "function-1775834443122": {
+        "type": "function",
+        "functionId": "[REDACTED_INTERNAL_FUNCTION_ID]",
+        "functionName": "mubashir_appointment_booking",
+        "functionDescription": "Validates patient details and creates \na confirmed appointment entry in the calendar system.",
+        "webhookUrl": "",
+        "speakDuringExecution": false,
+        "speakDuringExecutionPrompt": "",
+        "ambientSoundEnabled": false,
+        "ambientSound": "none",
+        "ambientSoundVolume": 0.4,
+        "position": {
+          "x": -392.74060222767724,
+          "y": 1747.9119557689028
+        }
+      },
+      "transferCall-1775211047135": {
+        "type": "transferCall",
+        "message": "",
+        "transferType": "cold",
+        "routingMode": "static",
+        "destination": "[REDACTED_PHONE_NUMBER]",
+        "routingPrompt": "",
+        "whisperMessage": "",
+        "position": {
+          "x": -1287.9858103267243,
+          "y": 932.778600511326
+        }
+      },
+      "endcall-1775200899864": {
+        "type": "endcall",
+        "message": "",
+        "transitions": [],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": 54.83805465284132,
+          "y": 1999.790831879422
+        },
+        "isGlobal": false
+      },
+      "endcall-1775207977796": {
+        "type": "endcall",
+        "message": "",
+        "transitions": [],
+        "isStart": false,
+        "skipResponse": false,
+        "position": {
+          "x": -1177.463382998722,
+          "y": 1369.6724639740694
+        },
+        "isGlobal": false
+      }
+    },
+    "edges": [
+      {
+        "from": "start-1",
+        "to": "conversation-1",
+        "condition": "default",
+        "sourceHandle": "success"
+      },
+      {
+        "from": "conversation-1",
+        "to": "conversation-1775200774297",
+        "condition": "condition-1",
+        "sourceHandle": "transition-1775200779202"
+      },
+      {
+        "from": "conversation-1775201346582",
+        "to": "extractVariable-1775201028712",
+        "condition": "condition-1"
+      },
+      {
+        "from": "extractVariable-1775201028712",
+        "to": "conversation-1775201346582",
+        "condition": "default",
+        "sourceHandle": "error"
+      },
+      {
+        "from": "conversation-1775201898981",
+        "to": "conversation-1",
+        "condition": "condition-2",
+        "sourceHandle": "transition-1775207958902"
+      },
+      {
+        "from": "conversation-1775201898981",
+        "to": "conversation-1775208108947",
+        "condition": "condition-1",
+        "sourceHandle": "transition-1775207948502"
+      },
+      {
+        "from": "conversation-1",
+        "to": "conversation-1775208108947",
+        "condition": "condition-3",
+        "sourceHandle": "transition-1775200884979"
+      },
+      {
+        "from": "conversation-1775208108947",
+        "to": "endcall-1775200899864",
+        "condition": "skip-response",
+        "sourceHandle": "transition-1775208146518"
+      },
+      {
+        "from": "conversation-1775210735008",
+        "to": "transferCall-1775211047135",
+        "condition": "condition-1",
+        "sourceHandle": "transition-1775211037611"
+      },
+      {
+        "from": "extractVariable-1775201028712",
+        "to": "conversation-1775470677867",
+        "condition": "default",
+        "sourceHandle": "success"
+      },
+      {
+        "from": "transferCall-1775211047135",
+        "to": "endcall-1775207977796",
+        "condition": "default",
+        "sourceHandle": "success"
+      },
+      {
+        "from": "transferCall-1775211047135",
+        "to": "conversation-1",
+        "condition": "default",
+        "sourceHandle": "error"
+      },
+      {
+        "from": "conversation-1775470677867",
+        "to": "function-1775834443122",
+        "condition": "condition-1",
+        "sourceHandle": "transition-1775470717599"
+      },
+      {
+        "from": "function-1775834443122",
+        "to": "conversation-1775201898981",
+        "condition": "default",
+        "sourceHandle": "success"
+      },
+      {
+        "from": "function-1775834443122",
+        "to": "conversation-1775208108947",
+        "condition": "default",
+        "sourceHandle": "error"
+      },
+      {
+        "from": "conversation-1775838331719",
+        "to": "extractVariable-1775201028712",
+        "condition": "condition-1",
+        "sourceHandle": "transition-1775838522706"
+      },
+      {
+        "from": "conversation-1",
+        "to": "conversation-1775836933477",
+        "condition": "condition-2",
+        "sourceHandle": "transition-1775200826938"
+      },
+      {
+        "from": "conversation-1775836933477",
+        "to": "conversation-1775838331719",
+        "condition": "condition-1",
+        "sourceHandle": "transition-1775838870762"
+      },
+      {
+        "from": "conversation-1775836933477",
+        "to": "conversation-1775201346582",
+        "condition": "condition-2",
+        "sourceHandle": "transition-1775839951388"
+      }
+    ]
+  },
+  "promptConfig": {
+    "endCallConfig": {
+      "enabled": true,
+      "phrases": [
+        "goodbye",
+        "bye",
+        "that's all",
+        "thank you bye"
+      ],
+      "endCallFunctionId": ""
+    },
+    "variableExtraction": {
+      "enabled": false,
+      "variables": [],
+      "extractionFrequency": "every_3_messages"
+    },
+    "transferConfig": {
+      "enabled": false,
+      "transferType": "cold",
+      "defaultDestination": "",
+      "routingPrompt": "",
+      "callerMessage": "",
+      "whisperMessage": ""
+    },
+    "systemPrompt": "",
+    "availableFunctions": [],
+    "availableMcpTools": []
+  },
+"knowledgeBaseConfig": {
+    "enabled": true,
+    "knowledgeBaseIds": [
+      "[REDACTED_KNOWLEDGE_BASE_ID]"
+    ],
+    "relevanceThreshold": 0.6,
+    "maxChunks": 3,
+    "embeddingModel": "local"
+  },
+  "redactionConfig": {
+    "enabled": false,
+    "categories": []
+  },
+  "postCallAnalysisConfig": {
+    "metrics": []
+  },
+  "zapierSendCallSummary": false,
+  "globalPrompt": "",
+  "version": 1,
+  "isActive": true
+}
