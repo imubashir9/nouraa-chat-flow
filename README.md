@@ -11,7 +11,7 @@ The visual flow represents the transition from basic NLU (Natural Language Under
 
 ## 🏗️ System Architecture & Flow Design
 
-The provided architecture diagram (`flow-architecture.png`) demonstrates a robust conversational pipeline divided into four primary skill sets:
+The provided architecture diagram (`Nouraa-chat-flow.jpg`) demonstrates a robust conversational pipeline divided into four primary skill sets:
 
 ### 1. Dynamic Triage & Intent Routing
 Instead of relying on rigid decision trees, the system uses LLM-powered intent classification to seamlessly route users from the main greeting node into distinct logical paths:
