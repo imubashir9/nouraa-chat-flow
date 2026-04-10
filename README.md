@@ -5,6 +5,10 @@ This repository contains the architectural blueprint and business logic orchestr
 
 The visual flow represents the transition from basic NLU (Natural Language Understanding) to a fully functional, agentic business layer.
 
+## 📂 Repository Contents
+* `flow-architecture.png`: The visual blueprint of the agent's logic nodes and conversational branching.
+* `agent-schema.json`: The raw JSON export of the agent's configuration, detailing the OpenAI GPT-4o parameters, variable extraction schemas, and tool-calling definitions (sensitive IDs and phone numbers have been redacted).
+
 ## 🏗️ System Architecture & Flow Design
 
 The provided architecture diagram (`flow-architecture.png`) demonstrates a robust conversational pipeline divided into four primary skill sets:
